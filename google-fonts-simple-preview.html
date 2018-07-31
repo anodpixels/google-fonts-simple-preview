@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Fonts Preview</title>
+    <style>
+        #preview {
+            padding: 10%;
+            text-align: left;
+            width: 100%;
+        }
+        h1 { font-size: 1.1vw; text-transform: uppercase; margin-bottom:0; color:#ccc; }
+        p { font-size: 3em; margin-top:0; }
+    </style>
+</head>
+
+<body>
+  
+    <div id="preview">
+        <h1 style="font-family:'Arial', sans-serif; font-weight: bold; margin-bottom: 10vh;">GOOGLE FONTS PREVIEWS</h1>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(function() {
+
+        $.getJSON('https://raw.githubusercontent.com/jonathantneal/google-fonts-complete/master/google-fonts.json', function(fonts) {
+        $.each(fonts, function(k, v) {
+            //if (v.category!=='serif') return; //sans-serif , serif , display , handwriting , monospace
+            var css = `@import url('https://fonts.googleapis.com/css?family=${k}');`;
+            $('<style/>').append(css).appendTo(document.head);
+            $(`<h1 style="font-family: '${k}'"/>`).text(`${k}:`).appendTo($('#preview'));
+            $(`<p style="font-family: '${k}'"/>`).text(`The quick brown Fox goes to Disney`).appendTo($('#preview'));
+        });
+
+    });
+    });
+    </script>    
+</body>
+</html>
